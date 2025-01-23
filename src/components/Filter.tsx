@@ -20,21 +20,71 @@ export default function Filter() {
   };
 
   return (
-    <Drawer>
-      <DrawerTrigger asChild>
-        <Button>filter</Button>
-      </DrawerTrigger>
-      <DrawerContent>
+    <div>
+      <div className="lg:hidden">
+        <Drawer>
+          <DrawerTrigger asChild>
+            <Button>filter</Button>
+          </DrawerTrigger>
+          <DrawerContent>
+            <div className="mx-auto w-[300px] mb-12">
+              <DrawerHeader>
+                <DrawerTitle>filter</DrawerTitle>
+              </DrawerHeader>
+              <div className="flex flex-col gap-4">
+                <div>
+                  <p>tipe?</p>
+                  <div className="flex gap-2">
+                    <Button
+                      className={filterType.includes("static") ? "translate-x-boxShadowX translate-y-boxShadowY" : "shadow-shadow hover:shadow-none"}
+                      variant={"active"}
+                      size={"sm"}
+                      onClick={() => handleFilterType("static")}
+                    >
+                      static
+                    </Button>
+                    <Button
+                      className={filterType.includes("dynamic") ? "translate-x-boxShadowX translate-y-boxShadowY" : "shadow-shadow hover:shadow-none"}
+                      variant={"active"}
+                      size={"sm"}
+                      onClick={(e) => handleFilterType("dynamic")}
+                    >
+                      dynamic
+                    </Button>
+                  </div>
+                </div>
+                <div>
+                  <p>tags</p>
+                  <div className="flex gap-2 flex-wrap">
+                    {tags.map((tag) => (
+                      <Button
+                        className={filterTags.includes(tag) ? "translate-x-boxShadowX translate-y-boxShadowY opacity-75" : "shadow-shadow hover:shadow-none"}
+                        variant={"active"}
+                        key={tag}
+                        size={"sm"}
+                        onClick={() => handleFilterTags(tag)}
+                      >
+                        {tag}
+                      </Button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </DrawerContent>
+        </Drawer>
+      </div>
+      <div className="hidden lg:block">
         <div className="mx-auto w-[300px] mb-12">
-          <DrawerHeader>
-            <DrawerTitle>filter</DrawerTitle>
-          </DrawerHeader>
+          <div>
+            <p className="font-bold">filter</p>
+          </div>
           <div className="flex flex-col gap-4">
             <div>
               <p>tipe?</p>
               <div className="flex gap-2">
                 <Button
-                  className={filterType.includes("static") ? "translate-x-boxShadowX translate-y-boxShadowY" : "shadow-shadow hover:shadow-none"}
+                  className={filterType.includes("static") ? "translate-x-boxShadowX translate-y-boxShadowY max-lg:opacity-75" : "shadow-shadow hover:shadow-none"}
                   variant={"active"}
                   size={"sm"}
                   onClick={() => handleFilterType("static")}
@@ -42,7 +92,7 @@ export default function Filter() {
                   static
                 </Button>
                 <Button
-                  className={filterType.includes("dynamic") ? "translate-x-boxShadowX translate-y-boxShadowY" : "shadow-shadow hover:shadow-none"}
+                  className={filterType.includes("dynamic") ? "translate-x-boxShadowX translate-y-boxShadowY max-lg:opacity-75" : "shadow-shadow hover:shadow-none"}
                   variant={"active"}
                   size={"sm"}
                   onClick={(e) => handleFilterType("dynamic")}
@@ -56,7 +106,7 @@ export default function Filter() {
               <div className="flex gap-2 flex-wrap">
                 {tags.map((tag) => (
                   <Button
-                    className={filterTags.includes(tag) ? "translate-x-boxShadowX translate-y-boxShadowY opacity-75" : "shadow-shadow hover:shadow-none"}
+                    className={filterTags.includes(tag) ? "translate-x-boxShadowX translate-y-boxShadowY max-lg:opacity-75" : "shadow-shadow hover:shadow-none"}
                     variant={"active"}
                     key={tag}
                     size={"sm"}
@@ -69,7 +119,7 @@ export default function Filter() {
             </div>
           </div>
         </div>
-      </DrawerContent>
-    </Drawer>
+      </div>
+    </div>
   );
 }

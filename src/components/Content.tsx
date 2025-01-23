@@ -20,7 +20,7 @@ export default function Content({ title, content, placeholder, type }: { title: 
   };
 
   return (
-    <div className="mt-4 flex flex-col gap-2">
+    <div className="mt-4 flex flex-col gap-2 lg:w-2/4 mx-auto">
       <div className="relative w-fit">
         <h2 className="text-xl font-semibold underline">{title}</h2>
       </div>

@@ -1,7 +1,5 @@
 "use client";
 
-import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, DrawerFooter, DrawerClose } from "@/components/ui/drawer";
-import { Button } from "@/components/ui/button";
 import data from "@/data/data.json";
 import DataList from "@/components/DataList";
 import Filter from "@/components/Filter";
@@ -13,15 +11,15 @@ export default function Home() {
   const [filterTags] = useAtom(filterTagsAtom);
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 lg:flex-row lg:w-3/4 lg:mx-auto h-[2000px] mt-4">
       <div className="flex gap-4">
         <Filter />
-        <div>
+        <div className="lg:hidden">
           <p>type: {filterType.join(", ")}</p>
           <p>tags: {filterTags.join(", ")}</p>
         </div>
       </div>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 lg:w-3/4">
         {data.map((item) => (
           <DataList
             key={item.title}

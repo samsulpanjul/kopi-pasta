@@ -17,15 +17,14 @@ export default function RootLayout({
       lang="en"
       className={`${montserrat.className}`}
     >
-      <body className="antialiased mx-4 py-2 relative">
-        <nav className="absolute w-full">
+      <body className="antialiased mx-4 lg:mx-auto py-2 relative lg:w-3/4">
+        <nav className="sticky z-50 w-full top-2">
           <div className="box flex">
             <Link href="/">
               <p className="text-2xl">kopi-pasta</p>
             </Link>
           </div>
         </nav>
-        <div className="h-[64px]"></div>
         {children}
       </body>
     </html>

@@ -1,0 +1,49 @@
+[
+  {
+    "id": 1,
+    "title": "Orang yang ngehate",
+    "content": "Orang yang ngehate {{name}} mungkin dia belum ketemu langsung. Sebaik dan sehumble itu dia sama orang baru salah satunya gw. Gw yg awalnya ga kenal, sekarang malah jadi temen. Semua yang udah ketemu dia juga pasti setuju sama pendapat gw.",
+    "data": {
+      "name": "Jerome"
+    },
+    "type": "dynamic",
+    "tags": ["klarifikasi"]
+  },
+  {
+    "id": 2,
+    "title": "LU BELAH DADA GUA",
+    "content": "EH KOCAK… COBA LU BELAH DADA GW… LU LIAT DADA GW ADA APAAN… ADA {{name}}  BOSSS… ITU ARTINYA APA? ARTINYA GW CINTA BGT SAMA {{name}}... {{name}} TILL I DIE…PAHAM LU PADA !?",
+    "data": {
+      "name": "INDONESIA"
+    },
+    "type": "dynamic",
+    "tags": ["???"]
+  },
+  {
+    "id": 3,
+    "title": "pengakuan kalau selama ini gw sudah punya istri",
+    "content": "Selamat pagi 🌄\nBuat teman teman semua gw mau minta maaf karena selama ini semua yang gw ceritain baik di post atau chat itu hanya kebohongan semata alasan gw boong gitu tidak lain untuk mendapatkan perhatian dari teman teman semua sekaligus agar gw disegani. Tapi sekarang gw udah sadar kalau kebohongan ga bisa ditutupin kecuali dengan kebohongan lain nya, sudah saatnya gw berhenti skizo dan menjadi lebih realistis.\nGw mau bikin pengakuan kalau selama ini gw sudah punya istri nama nya {{name}}, Aku dan {{name}} sudah menikah sejak 3 tahun yang lalu dan hidup harmonis 🥰, dan sekarang mempunyai anak, sekarang alhamdulillah tabungan gw sudah cukup untuk membeli tanah dan membangun rumah di sebuah pedesaan kecil dan mungkin tahun depan kami sudah bisa tinggal disana. Ini alasan utama gw bikin pengakuan ini agar gw bisa terlepas dari kebohongan gw di dunia maya dan hidup bahagia bersama {{name}} istri gw. Sekian 🥰🥰",
+    "data": {
+      "name": "Iochi Mari"
+    },
+    "type": "dynamic",
+    "tags": ["halu", "gws"]
+  },
+  {
+    "id": 4,
+    "title": "TIANANMEN",
+    "content": "动态网自由门 天安門 天安门 法輪功 李洪志 Free Tibet 六四天安門事件 The Tiananmen Square protests of 1989 天安門大屠殺 The Tiananmen Square Massacre 反右派鬥爭 The Anti-Rightist Struggle 大躍進政策 The Great Leap Forward 文化大革命 The Great Proletarian Cultural Revolution 人權 Human Rights 民運 Democratization 自由 Freedom 獨立 Independence 多黨制 Multi-party system 台灣 臺灣 Taiwan Formosa 中華民國 Republic of China 西藏 土伯特 唐古特 Tibet 達賴喇嘛 Dalai Lama 法輪功 Falun Dafa 新疆維吾爾自治區 The Xinjiang Uyghur Autonomous Region 諾貝爾和平獎 Nobel Peace Prize 劉暁波 Liu Xiaobo 民主 言論 思想 反共 反革命 抗議 運動 騷亂 暴亂 騷擾 擾亂 抗暴 平反 維權 示威游行 李洪志 法輪大法 大法弟子 強制斷種 強制堕胎 民族淨化 人體實驗 肅清 胡耀邦 趙紫陽 魏京生 王丹 還政於民 和平演變 激流中國 北京之春 大紀元時報 九評論共産黨 獨裁 專制 壓制 統一 監視 鎮壓 迫害 侵略 掠奪 破壞 拷問 屠殺 活摘器官 誘拐 買賣人口 遊進 走私 毒品 賣淫 春畫 賭博 六合彩 天安門 天安门 法輪功 李洪志 Winnie the Pooh 劉曉波动态网自由门",
+    "type": "static",
+    "tags": ["???"]
+  },
+  {
+    "id": 5,
+    "title": "Penderitaan ku selama hidup (ketabrak susu)",
+    "content": "Penderitaan Ku selama hidup!! (Lebih sedih daripada Kamijou Touma)\n1. Nabrak susu {{name}} 😭\n2. Jalan dikit kesandung nabrak susu {{name}} 😭\n3. Buka pintu kaget liat ada anak kecil nabrak susu {{name}} 😭\n4. Lagi tidur ketiban susu {{name}}😭\n5. Dipeluk {{name}} kena susu😭\n6. Susu {{name}}😭\n7. Aku capek, {{name}} bilek: sini nyusu😭\n8. Pengen susu {{name}} 😭\n9. Susu😭",
+    "data": {
+      "name": "Mei"
+    },
+    "type": "dynamic",
+    "tags": ["gws"]
+  }
+]

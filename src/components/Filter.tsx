@@ -5,7 +5,7 @@ import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from 
 import { useAtom } from "jotai";
 import { filterTypeAtom, filterTagsAtom } from "@/state/filterState";
 
-const tags = ["halu", "gws", "klarifikasi", "???"];
+const tags = ["halu", "gws", "klarifikasi", "???", "explicit"];
 
 export default function Filter() {
   const [filterType, setFilterType] = useAtom(filterTypeAtom);

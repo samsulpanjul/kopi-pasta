@@ -3,7 +3,7 @@
     "id": 1,
     "title": "Orang yang ngehate",
     "content": "Orang yang ngehate {{name}} mungkin dia belum ketemu langsung. Sebaik dan sehumble itu dia sama orang baru salah satunya gw. Gw yg awalnya ga kenal, sekarang malah jadi temen. Semua yang udah ketemu dia juga pasti setuju sama pendapat gw.",
-    "data": {
+    "variables": {
       "name": "Jerome"
     },
     "type": "dynamic",
@@ -13,7 +13,7 @@
     "id": 2,
     "title": "LU BELAH DADA GUA",
     "content": "EH KOCAK… COBA LU BELAH DADA GW… LU LIAT DADA GW ADA APAAN… ADA {{name}}  BOSSS… ITU ARTINYA APA? ARTINYA GW CINTA BGT SAMA {{name}}... {{name}} TILL I DIE…PAHAM LU PADA !?",
-    "data": {
+    "variables": {
       "name": "INDONESIA"
     },
     "type": "dynamic",
@@ -23,7 +23,7 @@
     "id": 3,
     "title": "pengakuan kalau selama ini gw sudah punya istri",
     "content": "Selamat pagi 🌄\nBuat teman teman semua gw mau minta maaf karena selama ini semua yang gw ceritain baik di post atau chat itu hanya kebohongan semata alasan gw boong gitu tidak lain untuk mendapatkan perhatian dari teman teman semua sekaligus agar gw disegani. Tapi sekarang gw udah sadar kalau kebohongan ga bisa ditutupin kecuali dengan kebohongan lain nya, sudah saatnya gw berhenti skizo dan menjadi lebih realistis.\nGw mau bikin pengakuan kalau selama ini gw sudah punya istri nama nya {{name}}, Aku dan {{name}} sudah menikah sejak 3 tahun yang lalu dan hidup harmonis 🥰, dan sekarang mempunyai anak, sekarang alhamdulillah tabungan gw sudah cukup untuk membeli tanah dan membangun rumah di sebuah pedesaan kecil dan mungkin tahun depan kami sudah bisa tinggal disana. Ini alasan utama gw bikin pengakuan ini agar gw bisa terlepas dari kebohongan gw di dunia maya dan hidup bahagia bersama {{name}} istri gw. Sekian 🥰🥰",
-    "data": {
+    "variables": {
       "name": "Iochi Mari"
     },
     "type": "dynamic",
@@ -40,10 +40,54 @@
     "id": 5,
     "title": "Penderitaan ku selama hidup (ketabrak susu)",
     "content": "Penderitaan Ku selama hidup!! (Lebih sedih daripada Kamijou Touma)\n1. Nabrak susu {{name}} 😭\n2. Jalan dikit kesandung nabrak susu {{name}} 😭\n3. Buka pintu kaget liat ada anak kecil nabrak susu {{name}} 😭\n4. Lagi tidur ketiban susu {{name}}😭\n5. Dipeluk {{name}} kena susu😭\n6. Susu {{name}}😭\n7. Aku capek, {{name}} bilek: sini nyusu😭\n8. Pengen susu {{name}} 😭\n9. Susu😭",
-    "data": {
+    "variables": {
       "name": "Mei"
     },
     "type": "dynamic",
     "tags": ["gws"]
+  },
+  {
+    "id": 6,
+    "title": "Gw tau psikolog mahal.",
+    "content": "Gw tau psikolog mahal. Jadi bro gw mau sekedar info aja.\nYa, kali ini gw mau open public terkait hubungan gw sama {{name}}. Jadi gini, {{name}} itu bukan cuma istri gw, dia juga penyemangat hidup gw, pelipur lara gw, dan, ya, ibu dari anak pertama kita ini. Maaf kalo selama ini gw nutup-nutupin, tapi sekarang udah waktunya kalian tau. Kita bahagia banget, guys. Doain yang terbaik buat keluarga kecil kita ya!",
+    "variables": {
+      "name": "Setsuna"
+    },
+    "type": "dynamic",
+    "tags": ["gws", "halu"]
+  },
+  {
+    "id": 7,
+    "title": "Disclaimer, Saya tidak terlibat dalam aktivitas",
+    "content": "Saya {{name}} tidak terlibat dalam aktivitas, perbuatan, atau keterlibatan dengan grup ini. Segala pendapat atau tindakan itu hanya kebetulan.",
+    "variables": {
+      "name": "Yasha"
+    },
+    "type": "dynamic",
+    "tags": ["klarifikasi"]
+  },
+  {
+    "id": 8,
+    "title": "NENEN",
+    "content": "NENEN NENEN KEPENGEN NENEN {{name}}. TETEK KENCANG MILIK {{name}} MEMBUATKU KEPENGEN NENEN. DIBALUT PAKAIAN KETAT YANG ADUHAI CROOOOTOTOTOTOTOT ANJING SANGE GUA BANGSAT. {{name}} PLIS DENGERIN BAIK BAIK. TOLONG BUKA BAJU SEBENTAR SAJA PLISSS TOLOOONG BANGET, BIARKAN MULUT KERINGKU BISA MENGECAP NENENMU. BIARKAN AKU MENGENYOT NENENMU {{name}}. AKU RELA NGASIH SESEMBAHAN APA AJA BERAPAPUN ITU DUIT YG AKU BAKAR KHUSUS TERKHUSUS BUATMU. TAPI TOLOOOONG BANGET BUKA BAJUMU AKU MAU NENEN. NENEN NENEEEEN NENEN {{name}} WANGIIII",
+    "variables": {
+      "name": "ASUNA"
+    },
+    "type": "dynamic",
+    "tags": ["gws", "explicit"]
+  },
+  {
+    "id": 9,
+    "title": "ANJING NGANGKANG GA LU",
+    "content": "ANJING NGANGKANG GA LU, NGANGKANG SEKARANG!!!\nGUA DAH GAK TAHAN, LO POKOKNYA HARUS NGANGKANG ANJING PLEASE LO GATAU APA SETIAP HARINYA LIAT LU SLIWAR SLIWER, GUA NGACENG BANGSATTTT LU PAHAM GA SIH SELAMA INI GUA PENGEN LIAT ELU POSTUR NGANGKANG, TAU GAK GUA SELALU NAHAN HORNY, DI KANTOR , DI WARUNG, DI RUMAH CUMA PENGEN PUAS PUASIN HASRAT GUA BUAT LIAT ELU NGANGKANG PLIS SEKALI AJA PLIS, GAPEDULI DILUAR SANA APA YANG TERJADI, ELO NGANGKANG GUA UDAH SENENG BANGSAT ANJING LU KUDU PAHAM GUA GA SUDI KEHILANGAN ELU, LU HARUS SETIDAKNYA NGANGKANG DAN MEMBEKAS DI MEMORI INDAH GUA PLIS DEH GW MINTA SEGENAP HATI GW AGAR LU NGANGKANG.",
+    "type": "static",
+    "tags": ["explicit", "gws"]
+  },
+  {
+    "id": 10,
+    "title": "Disclaimer",
+    "content": "Bilamana ada investigasi oleh kepolisian, Badan Intelijen Negara, atau entitas lain yang serupa, saya tidak bertanggung jawab atas konten server ini. Saya tidak tahu menahu siapa anggota server ini dan saya kemungkinan ditambahkan ke server ini oleh pihak ketiga tanpa pengetahuan serta konsen dari saya.",
+    "type": "static",
+    "tags": ["klarifikasi"]
   }
 ]

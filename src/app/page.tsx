@@ -5,6 +5,7 @@ import DataList from "@/components/DataList";
 import Filter from "@/components/Filter";
 import { useAtom } from "jotai";
 import { filterTypeAtom, filterTagsAtom } from "@/state/filterState";
+import CreatePastaButton from "@/components/CreatePastaButton";
 
 export default function Home() {
   const [filterType] = useAtom(filterTypeAtom);
@@ -12,11 +13,14 @@ export default function Home() {
 
   return (
     <div className="flex flex-col gap-2 lg:flex-row lg:w-3/4 lg:mx-auto h-[2000px] mt-4">
-      <div className="flex gap-4">
-        <Filter />
-        <div className="lg:hidden">
-          <p>type: {filterType.join(", ")}</p>
-          <p>tags: {filterTags.join(", ")}</p>
+      <div className="flex flex-col gap-4">
+        <CreatePastaButton />
+        <div className="flex gap-4">
+          <Filter />
+          <div className="lg:hidden">
+            <p>type: {filterType.join(", ")}</p>
+            <p>tags: {filterTags.join(", ")}</p>
+          </div>
         </div>
       </div>
       <div className="flex flex-col gap-2 lg:w-3/4">

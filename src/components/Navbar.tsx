@@ -24,7 +24,7 @@ export default async function Navbar() {
             </div>
           ) : (
             <Link href={`/auth/login`}>
-              <Button>Masuk</Button>
+              <Button>Login</Button>
             </Link>
           )}
         </div>

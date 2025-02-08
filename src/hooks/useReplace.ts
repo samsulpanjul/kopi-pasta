@@ -17,7 +17,7 @@ const useReplace = (template: string, variables: ReplacementData): string => {
   useEffect(() => {
     const replacePlaceholders = (text: string, variables: ReplacementData): string => {
       return text.replace(/{{(.*?)}}/g, (_, key) => {
-        return variables[key.trim()] || `{{${key}}}`;
+        return `<span class="font-semibold">${variables[key.trim()]}</span>`;
       });
     };
 

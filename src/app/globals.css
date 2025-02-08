@@ -44,10 +44,6 @@ body {
   background-image: radial-gradient(circle, #000000 1px, rgba(0, 0, 0, 0) 1px);
 }
 
-nav {
-  width: inherit;
-}
-
 @layer components {
   .box {
     @apply py-2 px-4 rounded-base shadow-shadow border-2 border-border bg-main text-mtext;

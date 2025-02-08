@@ -17,9 +17,11 @@ export default function RootLayout({
       lang="en"
       className={`${montserrat.className}`}
     >
-      <body className="antialiased mx-4 lg:mx-auto py-2 relative lg:w-3/4">
-        <Navbar />
-        {children}
+      <body className="antialiased">
+        <div className="mx-4 lg:mx-auto py-2 relative lg:w-3/4">
+          <Navbar />
+          {children}
+        </div>
       </body>
     </html>
   );

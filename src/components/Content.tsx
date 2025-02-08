@@ -22,7 +22,7 @@ export default function Content({ title, content, placeholder, type }: { title: 
   return (
     <div className="mt-4 flex flex-col gap-2 lg:w-2/4 mx-auto">
       <div className="relative w-fit">
-        <h2 className="text-xl font-semibold underline">{title}</h2>
+        <h2 className="text-xl font-semibold underline bg-white">{title}</h2>
       </div>
       {type === "dynamic" && (
         <Input
@@ -44,9 +44,8 @@ export default function Content({ title, content, placeholder, type }: { title: 
         <p
           ref={textRef}
           className="whitespace-pre-line"
-        >
-          {replace}
-        </p>
+          dangerouslySetInnerHTML={{ __html: replace }}
+        />
       </div>
     </div>
   );

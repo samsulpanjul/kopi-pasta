@@ -4,6 +4,6 @@ export const filterTypeAtom = atom<string[]>([]);
 
 export const filterTagsAtom = atom<string[]>([]);
 
-export const tagsAtom = atom<string[]>(["halu", "gws", "klarifikasi", "???", "explicit"]);
+export const tagsAtom = atom<string[]>(["halu", "gws", "klarifikasi", "???", "nsfw"]);
 
 export const typesAtom = atom<string[]>(["static", "dynamic"]);

@@ -8,8 +8,8 @@ export default function ErrorPastaPage() {
 
   return (
     <div className="flex flex-col items-center mt-52 gap-4">
-      <p className="text-7xl bg-bw font-semibold">oops!</p>
-      <p className="text-4xl bg-bw">ada kesalahan</p>
+      <p className="text-7xl bg-bw font-semibold">404</p>
+      <p className="text-4xl bg-bw">halaman ga ketemu</p>
       <Button
         size={"lg"}
         className="text-xl"

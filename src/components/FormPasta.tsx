@@ -1,7 +1,5 @@
 "use client";
 
-import { useState } from "react";
-
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -14,37 +12,66 @@ import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { UserType } from "@/types/type";
+import { Checkbox } from "./ui/checkbox-button";
 
-const FormSchema = z.object({
-  title: z.string().nonempty({ message: "judul boleh kosong" }),
-  content: z.string().nonempty({ message: "teks ga boleh kosong" }),
-  data: z.object({
-    name: z.string(),
-  }),
-  type: z.enum(["static", "dynamic"]),
-});
-
-export default function FormPasta({ id, name, email, avatar_url }: UserType) {
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
-    defaultValues: { title: "", content: "", data: { name: "" }, type: "dynamic" },
-  });
-
-  const [tags] = useAtom(tagsAtom);
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [tagsMessage, setTagsMessage] = useState<string>("");
-
-  const handleSubmit = (value: z.infer<typeof FormSchema>) => {
-    if (selectedTags.length === 0) {
-      setTagsMessage("minimal pilih 1 tag");
-      return;
+const FormSchema = z
+  .object({
+    title: z.string().trim().nonempty({ message: "judul boleh kosong" }),
+    content: z.string().trim().nonempty({ message: "teks ga boleh kosong" }),
+    data: z.object({
+      name: z.string().trim(),
+    }),
+    type: z.enum(["static", "dynamic"]),
+    tags: z.string().array().nonempty({ message: "pilih salah satu tag" }),
+  })
+  .superRefine((data, ctx) => {
+    if (data.type === "dynamic" && !data.data.name.length) {
+      ctx.addIssue({
+        path: ["data", "name"],
+        message: "nama ga boleh kosong",
+        code: "custom",
+      });
     }
 
-    if (value.data.name && value.type === "static") {
+    const splittedContent = data.content
+      .toLowerCase()
+      .replace(/[^\w\s]/g, "")
+      .split(" ");
+
+    if (!splittedContent.includes(data.data.name.toLowerCase())) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["data", "name"],
+        message: `ga ada ${data.data.name} di teks kopi pasta`,
+      });
+    }
+  });
+
+export default function FormPasta({ id, name, email, avatar_url }: UserType) {
+  const [tags] = useAtom(tagsAtom);
+
+  const form = useForm<z.infer<typeof FormSchema>>({
+    resolver: zodResolver(FormSchema),
+    defaultValues: { title: "", content: "", data: { name: "" }, type: "dynamic", tags: [] },
+  });
+
+  const handleSubmit = (value: z.infer<typeof FormSchema>) => {
+    if (value.type === "static") {
       value.data.name = "";
     }
 
-    console.log({ ...value, id, name, email, avatar_url, tags: selectedTags });
+    const splittedContent = value.content.split(" ");
+
+    if (value.type === "dynamic") {
+      for (let i = 0; i < splittedContent.length; i++) {
+        const replace = splittedContent[i].replace(/[^\w\s]/g, "").toLowerCase();
+        if (replace === value.data.name.toLowerCase()) {
+          splittedContent[i] = "{{name}}" + splittedContent[i].toLowerCase().replace(`${replace}`, "");
+        }
+      }
+    }
+
+    console.log({ ...value, content: splittedContent.join(" "), user_id: id, user_meta_data: { name, email, avatar_url } });
   };
 
   return (
@@ -60,10 +87,7 @@ export default function FormPasta({ id, name, email, avatar_url }: UserType) {
             <FormItem>
               <FormLabel>judul</FormLabel>
               <FormControl>
-                <Input
-                  placeholder="Mika"
-                  {...field}
-                />
+                <Input {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -127,26 +151,39 @@ export default function FormPasta({ id, name, email, avatar_url }: UserType) {
             </FormItem>
           )}
         />
-        <div>
-          <p className="font-bold text-sm">tags</p>
-          <div className="flex gap-2 flex-wrap">
-            {tags.map((tag) => (
-              <Button
-                key={tag}
-                variant={"active"}
-                size={"sm"}
-                className={selectedTags.includes(tag) ? "translate-x-boxShadowX translate-y-boxShadowY bg-main" : "shadow-shadow bg-bw"}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setSelectedTags((prev) => (selectedTags.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]));
-                }}
-              >
-                {tag}
-              </Button>
-            ))}
-          </div>
-          <p>{tagsMessage}</p>
-        </div>
+        <FormField
+          control={form.control}
+          name="tags"
+          render={() => (
+            <FormItem>
+              <FormLabel>tags</FormLabel>
+              <div className="flex gap-2 flex-wrap">
+                {tags.map((tag) => (
+                  <FormField
+                    key={tag}
+                    control={form.control}
+                    name="tags"
+                    render={({ field }) => (
+                      <FormItem key={tag}>
+                        <FormControl>
+                          <Checkbox
+                            checked={field.value?.includes(tag)}
+                            onCheckedChange={(checked) => {
+                              return checked ? field.onChange([...field.value, tag]) : field.onChange(field.value?.filter((value) => value !== tag));
+                            }}
+                          >
+                            {tag}
+                          </Checkbox>
+                        </FormControl>
+                      </FormItem>
+                    )}
+                  />
+                ))}
+              </div>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <Button
           type="submit"
           className="mt-4"

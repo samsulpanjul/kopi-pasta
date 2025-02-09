@@ -32,7 +32,7 @@ export default function Content({ title, content, placeholder, type }: { title: 
           onChange={(e) => setText({ name: e.target.value })}
         />
       )}
-      <div className="box relative mt-4">
+      <div className="box relative mt-4 py-4">
         <Button
           className="absolute -top-5 -right-3 text-xs"
           size={"xs"}
@@ -41,11 +41,13 @@ export default function Content({ title, content, placeholder, type }: { title: 
         >
           {copyText ? "disalin!" : "salin"}
         </Button>
-        <p
-          ref={textRef}
-          className="whitespace-pre-line"
-          dangerouslySetInnerHTML={{ __html: replace }}
-        />
+        <div className="max-h-[600px] overflow-auto scrollbar">
+          <p
+            ref={textRef}
+            className="whitespace-pre-line mr-2"
+            dangerouslySetInnerHTML={{ __html: replace }}
+          />
+        </div>
       </div>
     </div>
   );

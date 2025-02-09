@@ -49,3 +49,16 @@ body {
     @apply py-2 px-4 rounded-base shadow-shadow border-2 border-border bg-main text-mtext;
   }
 }
+
+@layer utilities {
+  .scrollbar {
+    &::-webkit-scrollbar {
+      width: 10px;
+      @apply bg-white/25;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #000;
+    }
+  }
+}

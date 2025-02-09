@@ -17,7 +17,7 @@ export default function RootLayout({
       lang="en"
       className={`${montserrat.className}`}
     >
-      <body className="antialiased">
+      <body className="antialiased scrollbar">
         <div className="mx-4 lg:mx-auto py-2 relative lg:w-3/4">
           <Navbar />
           {children}

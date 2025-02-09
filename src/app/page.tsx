@@ -12,14 +12,14 @@ export default function Home() {
   const [filterTags] = useAtom(filterTagsAtom);
 
   return (
-    <div className="flex flex-col gap-2 lg:flex-row lg:w-3/4 lg:mx-auto h-[2000px] mt-4">
+    <div className="flex flex-col gap-6 lg:flex-row lg:w-3/4 lg:mx-auto h-[2000px] mt-4">
       <div className="flex flex-col gap-4">
         <CreatePastaButton />
         <div className="flex gap-4">
           <Filter />
           <div className="lg:hidden">
-            <p>type: {filterType.join(", ")}</p>
-            <p>tags: {filterTags.join(", ")}</p>
+            <p className="w-fit bg-bw">type: {filterType.join(", ")}</p>
+            <p className="w-fit bg-bw">tags: {filterTags.join(", ")}</p>
           </div>
         </div>
       </div>
@@ -32,6 +32,7 @@ export default function Home() {
             id={item.id}
             type={item.type}
             tags={item.tags}
+            name={item.variables?.name}
           />
         ))}
       </div>

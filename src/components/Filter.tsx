@@ -52,7 +52,7 @@ function FilterList() {
   return (
     <div className="flex flex-col gap-4">
       <div>
-        <p>tipe?</p>
+        <p className="w-fit bg-bw">tipe?</p>
         <div className="flex gap-2">
           {types.map((type) => (
             <Button
@@ -68,7 +68,7 @@ function FilterList() {
         </div>
       </div>
       <div>
-        <p>tags</p>
+        <p className="w-fit bg-bw">tags</p>
         <div className="flex gap-2 flex-wrap">
           {tags.map((tag) => (
             <Button

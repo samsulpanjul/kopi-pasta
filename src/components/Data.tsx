@@ -12,11 +12,11 @@ import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { ChevronsUpDown } from "lucide-react";
 
-export default function DataList({ title, content, id, type, tags, name }: { title: string; content: string; id: number; type: string; tags: string[]; name: string | undefined }) {
+export default function Data({ title, content, id, type, tags, variables }: { title: string; content: string; id: string; type: string; tags: string[]; variables: { name: string } }) {
   const [isOpen, setIsOpen] = useState(false);
   const [filterType] = useAtom(filterTypeAtom);
   const [filterTags] = useAtom(filterTagsAtom);
-  const replace = useReplace(content, { name: name ?? "" });
+  const replace = useReplace(content, variables);
 
   const filtered = (!filterType.includes(type) && filterType.length !== 0) || (filterTags.length !== 0 && !tags.some((tag) => filterTags.includes(tag)));
 
@@ -28,7 +28,7 @@ export default function DataList({ title, content, id, type, tags, name }: { tit
     <Collapsible
       open={isOpen}
       onOpenChange={setIsOpen}
-      className="space-y-1 relative"
+      className="space-y-1 relative w-full"
     >
       <div className="absolute -top-1 -left-2">
         <Badge variant={"neutral"}>
@@ -40,7 +40,7 @@ export default function DataList({ title, content, id, type, tags, name }: { tit
           href={`/pasta/${id}`}
           className="w-full py-2"
         >
-          <h4 className="text-sm font-heading">{title}</h4>
+          <h4 className="text-sm font-heading line-clamp-1 lg:line-clamp-2">{title}</h4>
         </Link>
         <CollapsibleTrigger asChild>
           <Button

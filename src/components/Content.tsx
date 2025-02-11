@@ -5,16 +5,16 @@ import { Input } from "./ui/input";
 import useReplace from "@/hooks/useReplace";
 import { Button } from "./ui/button";
 
-export default function Content({ title, content, placeholder, type }: { title: string; content: string; placeholder: any; type: string }) {
-  const [text, setText] = useState(placeholder);
+export default function Content({ title, content, variables, type, author }: { title: string; content: string; variables: { name: string }; type: string; author: string }) {
+  const [text, setText] = useState(variables);
   const [copyText, setCopyText] = useState(false);
-  const textRef = useRef<any>(null);
+  const textRef = useRef<HTMLParagraphElement>(null);
   const replace = useReplace(content, text);
 
   const handleCopy = () => {
     setCopyText(true);
     if (textRef.current) {
-      navigator.clipboard.writeText(textRef.current.textContent);
+      navigator.clipboard.writeText(textRef.current?.textContent ?? "");
     }
     setTimeout(() => setCopyText(false), 2000);
   };
@@ -49,6 +49,7 @@ export default function Content({ title, content, placeholder, type }: { title: 
           />
         </div>
       </div>
+      <div className="bg-bw">— {author}</div>
     </div>
   );
 }

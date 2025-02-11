@@ -11,67 +11,77 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { UserType } from "@/types/type";
 import { Checkbox } from "./ui/checkbox-button";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const FormSchema = z
   .object({
-    title: z.string().trim().nonempty({ message: "judul boleh kosong" }),
+    title: z.string().trim().nonempty({ message: "judul ga boleh kosong" }),
     content: z.string().trim().nonempty({ message: "teks ga boleh kosong" }),
-    data: z.object({
+    variables: z.object({
       name: z.string().trim(),
     }),
     type: z.enum(["static", "dynamic"]),
     tags: z.string().array().nonempty({ message: "pilih salah satu tag" }),
   })
   .superRefine((data, ctx) => {
-    if (data.type === "dynamic" && !data.data.name.length) {
+    if (data.title.trim().split(" ").length > 15) {
       ctx.addIssue({
-        path: ["data", "name"],
+        code: "custom",
+        path: ["title"],
+        message: "ga boleh lebih dari 15 kata",
+      });
+    }
+
+    if (data.type === "dynamic" && !data.variables.name.length) {
+      ctx.addIssue({
+        path: ["variables", "name"],
         message: "nama ga boleh kosong",
         code: "custom",
       });
     }
 
-    const splittedContent = data.content
-      .toLowerCase()
-      .replace(/[^\w\s]/g, "")
-      .split(" ");
-
-    if (!splittedContent.includes(data.data.name.toLowerCase())) {
+    if (data.type === "dynamic" && !new RegExp(`\\b${data.variables.name}\\b`, "i").test(data.content.replace(/[^\w\s]/g, ""))) {
       ctx.addIssue({
         code: "custom",
-        path: ["data", "name"],
-        message: `ga ada ${data.data.name} di teks kopi pasta`,
+        path: ["variables", "name"],
+        message: `ga ada ${data.variables.name} di teks kopi pasta`,
       });
     }
   });
 
-export default function FormPasta({ id, name, email, avatar_url }: UserType) {
+export default function FormPasta() {
   const [tags] = useAtom(tagsAtom);
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
-    defaultValues: { title: "", content: "", data: { name: "" }, type: "dynamic", tags: [] },
+    defaultValues: { title: "", content: "", variables: { name: "" }, type: "dynamic", tags: [] },
   });
 
-  const handleSubmit = (value: z.infer<typeof FormSchema>) => {
+  const handleSubmit = async (value: z.infer<typeof FormSchema>) => {
     if (value.type === "static") {
-      value.data.name = "";
+      value.variables.name = "";
     }
-
-    const splittedContent = value.content.split(" ");
 
     if (value.type === "dynamic") {
-      for (let i = 0; i < splittedContent.length; i++) {
-        const replace = splittedContent[i].replace(/[^\w\s]/g, "").toLowerCase();
-        if (replace === value.data.name.toLowerCase()) {
-          splittedContent[i] = "{{name}}" + splittedContent[i].toLowerCase().replace(`${replace}`, "");
-        }
-      }
+      value.content = value.content.replaceAll(value.variables.name, "{{name}}");
     }
 
-    console.log({ ...value, content: splittedContent.join(" "), user_id: id, user_meta_data: { name, email, avatar_url } });
+    try {
+      await axios.post(`${process.env.NEXT_PUBLIC_SITE_URL}/api/pasta`, {
+        ...value,
+      });
+      form.reset();
+      router.push("/");
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.error("Axios Error:", error.response?.data || error.message);
+      } else {
+        console.error("Unknown Error:", error);
+      }
+    }
   };
 
   return (
@@ -100,7 +110,10 @@ export default function FormPasta({ id, name, email, avatar_url }: UserType) {
             <FormItem>
               <FormLabel>teks kopi pasta</FormLabel>
               <FormControl>
-                <Textarea {...field} />
+                <Textarea
+                  {...field}
+                  className="h-[200px] scrollbar"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -109,7 +122,7 @@ export default function FormPasta({ id, name, email, avatar_url }: UserType) {
         {form.getValues("type") === "dynamic" && (
           <FormField
             control={form.control}
-            name="data.name"
+            name="variables.name"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>nama</FormLabel>
@@ -188,6 +201,7 @@ export default function FormPasta({ id, name, email, avatar_url }: UserType) {
           type="submit"
           className="mt-4"
           variant={"reverse"}
+          disabled={form.formState.isSubmitting}
         >
           post
         </Button>

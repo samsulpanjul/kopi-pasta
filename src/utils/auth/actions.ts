@@ -8,7 +8,7 @@ export async function signInWithGoogle() {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
-      redirectTo: `${process.env.SITE_URL}/auth/callback`,
+      redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
     },
   });
 
@@ -23,4 +23,5 @@ export async function signInWithGoogle() {
 export async function signOut() {
   const supabase = await createClient();
   await supabase.auth.signOut();
+  redirect("/");
 }

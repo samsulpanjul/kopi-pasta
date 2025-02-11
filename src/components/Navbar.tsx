@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { createClient } from "@/utils/supabase/server";
 import SignOutButton from "./SignOutButton";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
 
 export default async function Navbar() {
   const supabase = await createClient();
@@ -18,13 +19,33 @@ export default async function Navbar() {
         </Link>
         <div>
           {user ? (
-            <div className="flex items-center gap-4">
-              <p>{user?.user_metadata.name}</p>
-              <SignOutButton />
-            </div>
+            <>
+              <div className="flex items-center gap-4">
+                <p>{user?.user_metadata.name}</p>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant={"noShadow"}>menu</Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-56">
+                    <DropdownMenuLabel>menu</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuGroup>
+                      <Link href={"/profile/manage"}>
+                        <DropdownMenuItem className="cursor-pointer">
+                          <span>manage</span>
+                        </DropdownMenuItem>
+                      </Link>
+                      <DropdownMenuItem>
+                        <SignOutButton />
+                      </DropdownMenuItem>
+                    </DropdownMenuGroup>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
+            </>
           ) : (
             <Link href={`/auth/login`}>
-              <Button>Login</Button>
+              <Button>masuk</Button>
             </Link>
           )}
         </div>

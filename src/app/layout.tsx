@@ -1,6 +1,7 @@
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import QueryProvider from "@/components/providers/QueryProvider";
 
 const montserrat = Montserrat({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -18,10 +19,12 @@ export default function RootLayout({
       className={`${montserrat.className}`}
     >
       <body className="antialiased scrollbar">
-        <div className="mx-4 lg:mx-auto py-2 relative lg:w-3/4">
-          <Navbar />
-          {children}
-        </div>
+        <QueryProvider>
+          <div className="mx-4 lg:mx-auto py-2 relative lg:w-3/4">
+            <Navbar />
+            {children}
+          </div>
+        </QueryProvider>
       </body>
     </html>
   );

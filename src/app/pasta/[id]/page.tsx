@@ -1,21 +1,38 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import data from "@/data/data.json";
 import Content from "@/components/Content";
+import { getSinglePasta } from "@/services/pastaService";
+import { useQuery } from "@tanstack/react-query";
 
 export default function ContentPage() {
-  const { id }: { id: any } = useParams();
-  const { title, content, variables: placeholder, type } = data[id - 1];
+  const { id } = useParams<{ id: string }>();
+
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["dataSinglePasta", id],
+    queryFn: () => getSinglePasta(id),
+  });
 
   return (
     <div>
-      <Content
-        title={title}
-        content={content}
-        placeholder={placeholder}
-        type={type}
-      />
+      {error && (
+        <div className="mx-auto mt-52 bg-bw w-fit">
+          <p className="text-7xl">error</p>
+        </div>
+      )}
+      {isLoading ? (
+        <div className="mx-auto mt-52 bg-bw w-fit">
+          <p className="text-7xl">bentar...</p>
+        </div>
+      ) : (
+        <Content
+          title={data.data.title}
+          content={data.data.content}
+          variables={data.data.variables}
+          type={data.data.type}
+          author={data.data.user_metadata.name}
+        />
+      )}
     </div>
   );
 }

@@ -2,8 +2,9 @@
 
 import { Button } from "./ui/button";
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "./ui/drawer";
-import { useAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 import { filterTypeAtom, filterTagsAtom, tagsAtom, typesAtom } from "@/state/filterState";
+import { currentPageAtom } from "@/state/state";
 
 export default function Filter() {
   return (
@@ -40,6 +41,7 @@ function FilterList() {
   const [filterType, setFilterType] = useAtom(filterTypeAtom);
   const [tags] = useAtom(tagsAtom);
   const [filterTags, setFilterTags] = useAtom(filterTagsAtom);
+  const setCurrentPage = useSetAtom(currentPageAtom);
 
   const handleFilterType = (type: string) => {
     setFilterType((prevType: string[]) => (prevType.includes(type) ? prevType.filter((t) => t !== type) : [...prevType, type]));
@@ -60,7 +62,10 @@ function FilterList() {
               className={filterType.includes(type) ? "translate-x-boxShadowX translate-y-boxShadowY" : "shadow-shadow"}
               variant={"active"}
               size={"sm"}
-              onClick={() => handleFilterType(type)}
+              onClick={() => {
+                handleFilterType(type);
+                setCurrentPage(1);
+              }}
             >
               {type}
             </Button>
@@ -76,7 +81,10 @@ function FilterList() {
               variant={"active"}
               key={tag}
               size={"sm"}
-              onClick={() => handleFilterTags(tag)}
+              onClick={() => {
+                handleFilterTags(tag);
+                setCurrentPage(1);
+              }}
             >
               {tag}
             </Button>

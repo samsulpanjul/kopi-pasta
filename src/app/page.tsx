@@ -25,7 +25,13 @@ export default function Home() {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
 
-  const currentData = data?.slice(startIndex, endIndex);
+  const filteredData = data?.filter((item: PastaType) => {
+    const type = filterType.length === 0 || filterType.includes(item?.type);
+    const tags = filterTags.length === 0 || item.tags.some((tag) => filterTags.includes(tag));
+    return type && tags;
+  });
+
+  const currentData = filteredData?.slice(startIndex, endIndex);
 
   return (
     <div className="flex flex-col gap-6 lg:flex-row lg:w-3/4 lg:mx-auto mt-4 mb-8">
@@ -40,14 +46,18 @@ export default function Home() {
         </div>
       </div>
       <div className="flex flex-col gap-2 lg:w-3/4">
-        {error && <p>error</p>}
+        {error && (
+          <div className="mx-auto bg-bw mt-52">
+            <p className="text-4xl">something went wrong</p>
+          </div>
+        )}
         {isLoading ? (
           <div className="mx-auto bg-bw mt-52">
             <p className="text-4xl">bentar...</p>
           </div>
         ) : (
           <>
-            {currentData.map((item: PastaType) => (
+            {currentData?.map((item: PastaType) => (
               <Data
                 key={item.id}
                 id={item.id}
@@ -60,7 +70,7 @@ export default function Home() {
             ))}
             <PaginationButton
               currentPage={currentPage}
-              data={data}
+              data={filteredData}
               setCurrentPage={setCurrentPage}
               itemsPerPage={itemsPerPage}
             />

@@ -4,7 +4,7 @@ import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, Pagi
 import { PastaType } from "@/types/type";
 
 export default function PaginationButton({ data, currentPage, setCurrentPage, itemsPerPage }: { data: PastaType[]; currentPage: number; setCurrentPage: React.Dispatch<React.SetStateAction<number>>; itemsPerPage: number }) {
-  const totalPages = Math.ceil(data.length / itemsPerPage);
+  const totalPages = Math.ceil(data?.length / itemsPerPage);
 
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages) {

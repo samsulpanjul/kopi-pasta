@@ -4,9 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import useReplace from "@/hooks/useReplace";
 
-import { useAtom } from "jotai";
-import { filterTypeAtom, filterTagsAtom } from "@/state/filterState";
-
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
@@ -14,15 +11,7 @@ import { ChevronsUpDown } from "lucide-react";
 
 export default function Data({ title, content, id, type, tags, variables }: { title: string; content: string; id: string; type: string; tags: string[]; variables: { name: string } }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [filterType] = useAtom(filterTypeAtom);
-  const [filterTags] = useAtom(filterTagsAtom);
   const replace = useReplace(content, variables);
-
-  const filtered = (!filterType.includes(type) && filterType.length !== 0) || (filterTags.length !== 0 && !tags.some((tag) => filterTags.includes(tag)));
-
-  if (filtered) {
-    return null;
-  }
 
   return (
     <Collapsible

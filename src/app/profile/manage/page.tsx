@@ -36,7 +36,7 @@ export default function ManagePastaPage() {
           {data.map((item: PastaType) => (
             <div
               key={item.id}
-              className="flex items-center gap-2"
+              className={`flex items-center gap-2 ${deleteMutation.isPending ? "bg-white/50" : ""}`}
             >
               <Data
                 id={item.id}
@@ -48,7 +48,12 @@ export default function ManagePastaPage() {
               />
               <AlertDialog>
                 <AlertDialogTrigger asChild>
-                  <Button className="bg-red-600 text-white">hapus</Button>
+                  <Button
+                    className="bg-red-600 text-white"
+                    disabled={deleteMutation.isPending}
+                  >
+                    hapus
+                  </Button>
                 </AlertDialogTrigger>
                 <AlertDialogContent>
                   <AlertDialogHeader>
@@ -62,8 +67,9 @@ export default function ManagePastaPage() {
                         deleteMutation.mutate(item.id);
                       }}
                       className="bg-red-600 text-white"
+                      disabled={deleteMutation.isPending}
                     >
-                      hapus
+                      {deleteMutation.isPending ? "tunggu" : "hapus"}
                     </AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>

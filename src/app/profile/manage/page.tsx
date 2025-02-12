@@ -3,14 +3,25 @@
 import Data from "@/components/Data";
 import { deletePasta, getUserPasta } from "@/services/pastaService";
 import { PastaType } from "@/types/type";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 
 export default function ManagePastaPage() {
+  const queryClient = useQueryClient();
+
   const { data, error, isLoading } = useQuery({
     queryKey: ["dataUserPasta"],
     queryFn: getUserPasta,
+  });
+
+  const deleteMutation = useMutation({
+    mutationFn: async (id: string) => {
+      await deletePasta(id);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["dataUserPasta"] });
+    },
   });
 
   return (
@@ -48,8 +59,7 @@ export default function ManagePastaPage() {
                     <AlertDialogCancel>ga jadi</AlertDialogCancel>
                     <AlertDialogAction
                       onClick={async () => {
-                        await deletePasta(item.id);
-                        location.reload();
+                        deleteMutation.mutate(item.id);
                       }}
                       className="bg-red-600 text-white"
                     >
